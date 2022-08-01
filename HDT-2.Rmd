@@ -1,0 +1,22 @@
+---
+title: "HDT2"
+output: html_document
+date: '2022-08-01'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("forecast")
+install.packages("fUnitRoots")
+install.packages("ggfortify")
+
+library(forecast)
+library(tseries)
+library(fUnitRoots)
+library(ggfortify)
+
+```
+
