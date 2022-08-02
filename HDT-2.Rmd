@@ -43,4 +43,24 @@ df_importacion$`Diesel bajo azufre` <- NULL
 df_importacion[4] <- NULL
 head(df_importacion)
 ```
+```{r}
+library(tseries)
+library(forecast)
+
+
+Consumo_Diesel <- ts(df_consumo$Diesel, start=c(2000, 1), frequency = 12)
+Consumo_regular <- ts(df_consumo$`Gasolina regular`, start=c(2000, 1), frequency = 12)
+Consumo_super <- ts(df_consumo$`Gasolina superior`, start=c(2000, 1), frequency = 12)
+importacion_Diesel <- ts(df_importacion$Diesel, start=c(2000, 1), frequency = 12)
+importacion_regular <- ts(df_importacion$`Gasolina regular`, start=c(2000, 1), frequency = 12)
+importacion_super <- ts(df_importacion$`Gasolina superior`, start=c(2000, 1), frequency = 12)
+
+
+plot(Consumo_Diesel)
+plot(Consumo_regular)
+plot(Consumo_super)
+plot(importacion_Diesel)
+plot(importacion_regular)
+plot(importacion_super)
+```
 
