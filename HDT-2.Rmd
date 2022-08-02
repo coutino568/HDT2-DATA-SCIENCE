@@ -9,21 +9,24 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-install.packages("forecast")
-install.packages("fUnitRoots")
-install.packages("ggfortify")
+#install.packages("forecast")
+##install.packages("fUnitRoots")
+#install.packages("ggfortify")
 
 library(forecast)
 library(tseries)
 library(fUnitRoots)
 library(ggfortify)
+library(readxl)
 getwd()
-library("readxl")
-# xls files
-consumo <- read_excel("CONSUMO.xlsx")
-importacion <- read_excel("IMPORTACION.xlsx")
+df_consumo <- read_excel("CONSUMO-2022-05.xlsx", range="B7:G276")
+df_importacion <- read_excel("IMPORTACION-VOLUMEN-2022-05.xlsx", range="B7:G264")
+```
+```{r}
+df_consumo
+```
 
-#df_consumo <- read.csv("CONSUMO.csv")
-#df_importacion <- read.csv("IMPORTACION.csv")
+```{r}
+df_importacion
 ```
 
