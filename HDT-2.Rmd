@@ -18,7 +18,12 @@ library(tseries)
 library(fUnitRoots)
 library(ggfortify)
 getwd()
-df_consumo <- read.csv("CONSUMO.csv")
-df_importacion <- read.csv("IMPORTACION.csv")
+library("readxl")
+# xls files
+consumo <- read_excel("CONSUMO.xlsx")
+importacion <- read_excel("IMPORTACION.xlsx")
+
+#df_consumo <- read.csv("CONSUMO.csv")
+#df_importacion <- read.csv("IMPORTACION.csv")
 ```
 
