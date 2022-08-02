@@ -29,4 +29,18 @@ df_consumo
 ```{r}
 df_importacion
 ```
+```{r}
+df_consumo$Diesel <- df_consumo$`Diesel alto azufre`+df_consumo$`Diesel bajo azufre`
+df_consumo$`Diesel alto azufre` <- NULL
+df_consumo$`Diesel bajo azufre` <- NULL
+df_consumo[4] <- NULL
+head(df_consumo)
+```
+```{r}
+df_importacion$Diesel <- df_importacion$`Diesel alto azufre`+df_importacion$`Diesel bajo azufre`
+df_importacion$`Diesel alto azufre` <- NULL
+df_importacion$`Diesel bajo azufre` <- NULL
+df_importacion[4] <- NULL
+head(df_importacion)
+```
 
