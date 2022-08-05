@@ -35,6 +35,15 @@ df_consumo$`Diesel alto azufre` <- NULL
 df_consumo$`Diesel bajo azufre` <- NULL
 df_consumo[4] <- NULL
 head(df_consumo)
+
+
+
+summary(df_consumo)
+plot(df_consumo$Fecha, df_consumo$`Gasolina superior`, xlab="FECHA", ylab="CONSUMO GASOLINA SUPERIOR", col= "blue")
+points(df_consumo$Fecha, df_consumo$Diesel, col = "green", pch = 19)
+points(df_consumo$Fecha, df_consumo$`Gasolina regular`, col = "red", pch = 19)
+
+
 ```
 ```{r}
 df_importacion$Diesel <- df_importacion$`Diesel alto azufre`+df_importacion$`Diesel bajo azufre`
@@ -49,6 +58,12 @@ library(forecast)
 
 
 Consumo_Diesel <- ts(df_consumo$Diesel, start=c(2000, 1), frequency = 12)
+
+Consumo_Diesel <- ts(df_consumo$Diesel, start=2000, end=1, frequency = 12)
+c(df_consumo
+
+
+
 Consumo_regular <- ts(df_consumo$`Gasolina regular`, start=c(2000, 1), frequency = 12)
 Consumo_super <- ts(df_consumo$`Gasolina superior`, start=c(2000, 1), frequency = 12)
 importacion_Diesel <- ts(df_importacion$Diesel, start=c(2000, 1), frequency = 12)
