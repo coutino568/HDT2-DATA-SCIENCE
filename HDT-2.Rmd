@@ -56,9 +56,6 @@ df_importacion[4] <- NULL
 head(df_importacion)
 ```
 ```{r}
-library(tseries)
-library(forecast)
-
 
 Consumo_Diesel <- ts(df_consumo$Diesel, start=c(2000, 1), frequency = 12)
 Consumo_regular <- ts(df_consumo$`Gasolina regular`, start=c(2000, 1), frequency = 12)
@@ -75,3 +72,4 @@ plot(importacion_Diesel)
 plot(importacion_regular)
 plot(importacion_super)
 
+```
