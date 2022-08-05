@@ -44,6 +44,9 @@ points(df_consumo$Fecha, df_consumo$Diesel, col = "green", pch = 19)
 points(df_consumo$Fecha, df_consumo$`Gasolina regular`, col = "red", pch = 19)
 
 
+height<- dnorm(df_consumo$`Gasolina superior`, mean(df_consumo$`Gasolina superior`), sd(df_consumo$`Gasolina superior`))
+plot(df_consumo$`Gasolina superior`, height)
+
 ```
 ```{r}
 df_importacion$Diesel <- df_importacion$`Diesel alto azufre`+df_importacion$`Diesel bajo azufre`
