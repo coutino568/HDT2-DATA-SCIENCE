@@ -74,5 +74,31 @@ plot(importacion_super)
 
 ```
 ```{r}
-
+dec_cons_super <- decompose(Consumo_super)
+plot(dec_cons_super)
 ```
+
+
+```{r}
+dec_cons_Diesel <- decompose(Consumo_Diesel)
+plot(dec_cons_Diesel)
+```
+
+
+```{r}
+dec_cons_regular <- decompose(Consumo_regular)
+plot(dec_cons_regular)
+```
+```{r}
+dec_imp_super <- decompose(importacion_super)
+plot(dec_imp_super)
+```
+```{r}
+dec_imp_diesel <- decompose(importacion_Diesel)
+plot(dec_imp_diesel)
+```
+```{r}
+dec_imp_regular <- decompose(importacion_regular)
+plot(dec_imp_regular)
+```
+
