@@ -103,8 +103,33 @@ plot(dec_imp_regular)
 ```
 ```{r}
 plot(Consumo_Diesel)
-trans_diesel<-diff(log(Consumo_Diesel))
-plot(trans_diesel)
+trans_cons_diesel<-diff(BoxCox(Consumo_Diesel, 5.5))
+plot(trans_cons_diesel)
+```
+```{r}
+plot(Consumo_super)
+trans_cons_super<-diff(Consumo_super)
+plot(trans_cons_super)
+```
+```{r}
+plot(Consumo_regular)
+trans_cons_regular<-diff(Consumo_regular)
+plot(trans_cons_regular)
+```
+```{r}
+plot(importacion_Diesel)
+trans_imp_diesel<-diff(BoxCox(importacion_Diesel, 4.5))
+plot(trans_imp_diesel)
+```
+```{r}
+plot(importacion_super)
+trans_imp_super<-diff(BoxCox(importacion_super, 2.5))
+plot(trans_imp_super)
+```
+```{r}
+plot(importacion_regular)
+trans_imp_regular<-diff(BoxCox(importacion_regular, 2.5))
+plot(trans_imp_regular)
 ```
 
 
