@@ -13,15 +13,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(prophet)
 library(readxl)
+library(dplyr)
 getwd()
 df_consumo <- read_excel("CONSUMO-2022-05.xlsx", range="B7:G276")
 df_importacion <- read_excel("IMPORTACION-VOLUMEN-2022-05.xlsx", range="B7:G264")
-```
-```{r}
-df_cons_diesel <- df_consumo
 
-df_cons_diesel$ds <- as.Date(df_consumo$Fecha, format="%Y%m%d")
-df_cons_diesel$y <- df_consumo$`Diesel bajo azufre`+df_consumo$`Diesel alto azufre`
+df_consumo
+df_importacion
+```
+
+```{r}
+index2019_cons <- match(as.Date("2019-1-1"), as.Date(df_consumo$Fecha, format="%Y%m%d"))
+index2019_imp  <- match(as.Date("2019-1-1"), as.Date(df_importacion$Fecha, format="%Y%m%d"))
+index2019_cons
+index2019_imp 
+```
+
+```{r}
+
+df_cons_sample <- sample_frac(df_consumo, 229/269)
+
+df_cons_diesel <- df_cons_sample
+
+df_cons_diesel$ds <- as.Date(df_cons_sample$Fecha, format="%Y%m%d")
+df_cons_diesel$y <- df_cons_sample$`Diesel bajo azufre`+df_cons_sample$`Diesel alto azufre`
 
 
 
@@ -34,21 +49,23 @@ df_cons_diesel[1] <- NULL
 
 df_cons_reg <- df_cons_diesel
 
-df_cons_reg$y <- df_consumo$`Gasolina regular`
+df_cons_reg$y <- df_cons_sample$`Gasolina regular`
 
 df_cons_super <- df_cons_diesel
 
-df_cons_super$y <- df_consumo$`Gasolina superior`
+df_cons_super$y <- df_cons_sample$`Gasolina superior`
 
 df_cons_diesel
 df_cons_reg
 df_cons_super
 ```
 ```{r}
-df_imp_diesel <- df_importacion
+df_imp_sample <- sample_frac(df_importacion, 217/257)
 
-df_imp_diesel$ds <- as.Date(df_importacion$Fecha, format="%Y%m%d")
-df_imp_diesel$y <- df_importacion$`Diesel bajo azufre`+df_importacion$`Diesel alto azufre`
+df_imp_diesel <- df_imp_sample
+
+df_imp_diesel$ds <- as.Date(df_imp_sample$Fecha, format="%Y%m%d")
+df_imp_diesel$y <- df_imp_sample$`Diesel bajo azufre`+df_imp_sample$`Diesel alto azufre`
 
 
 
@@ -61,11 +78,11 @@ df_imp_diesel[1] <- NULL
 
 df_imp_reg <- df_imp_diesel
 
-df_imp_reg$y <- df_importacion$`Gasolina regular`
+df_imp_reg$y <-df_imp_sample$`Gasolina regular`
 
 df_imp_super <- df_imp_diesel
 
-df_imp_super$y <- df_importacion$`Gasolina superior`
+df_imp_super$y <-df_imp_sample$`Gasolina superior`
 
 df_imp_diesel
 df_imp_reg
@@ -81,7 +98,7 @@ prophet_imp_reg <-    prophet(df_imp_reg   , weekly.seasonality = TRUE, daily.se
 prophet_imp_super <-  prophet(df_imp_super , weekly.seasonality = TRUE, daily.seasonality = TRUE)
 ```
 ```{r}
-future_cons <- make_future_dataframe(prophet_cons_diesel, periods = 365)
+future_cons <- make_future_dataframe(prophet_cons_diesel, periods = 365*3)
 forecast_cons_diesel <- predict(prophet_cons_diesel, future_cons)
 tail(forecast_cons_diesel)
 ```
@@ -94,7 +111,7 @@ forecast_cons_super <- predict(prophet_cons_super, future_cons)
 tail(forecast_cons_super)
 ```
 ```{r}
-future_imp = make_future_dataframe(prophet_imp_diesel, periods = 365)
+future_imp = make_future_dataframe(prophet_imp_diesel, periods = 365*3)
 forecast_imp_diesel <- predict(prophet_imp_diesel, future_imp)
 tail(forecast_imp_diesel)
 ```
@@ -107,6 +124,7 @@ forecast_imp_super <- predict(prophet_imp_super, future_imp)
 tail(forecast_imp_super)
 ```
 ```{r}
+
 plot(prophet_cons_diesel, forecast_cons_diesel)
 plot(prophet_cons_reg, forecast_cons_reg)
 plot(prophet_cons_super, forecast_cons_super)
