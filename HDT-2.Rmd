@@ -133,7 +133,7 @@ acf(trans_imp_super)
 ```
 ```{r}
 plot(importacion_regular)
-trans_imp_regular<-diff(BoxCox(importacion_regular, 1.6))
+trans_imp_regular<-diff(BoxCox(importacion_regular, 2.6))
 plot(trans_imp_regular)
 acf(trans_imp_regular)
 ```
