@@ -106,36 +106,42 @@ plot(Consumo_Diesel)
 trans_cons_diesel<-diff(BoxCox(Consumo_Diesel, 20.5))
 plot(trans_cons_diesel)
 acf(trans_cons_diesel)
+adfTest(trans_cons_diesel)
 ```
 ```{r}
 plot(Consumo_super)
 trans_cons_super<-diff(BoxCox(Consumo_super, 15))
 plot(trans_cons_super)
 acf(trans_cons_super)
+adfTest(trans_cons_super)
 ```
 ```{r}
 plot(Consumo_regular)
 trans_cons_regular<-diff(BoxCox(Consumo_regular, 18))
 plot(trans_cons_regular)
 acf(trans_cons_regular)
+adfTest(trans_cons_regular)
 ```
 ```{r}
 plot(importacion_Diesel)
 trans_imp_diesel<-diff(BoxCox(importacion_Diesel, 15.5))
 plot(trans_imp_diesel)
 acf(trans_imp_diesel)
+adfTest(trans_imp_diesel)
 ```
 ```{r}
 plot(importacion_super)
 trans_imp_super<-diff(BoxCox(importacion_super, 8.6))
 plot(trans_imp_super)
 acf(trans_imp_super)
+adfTest(trans_imp_super)
 ```
 ```{r}
 plot(importacion_regular)
 trans_imp_regular<-diff(BoxCox(importacion_regular, 26.0634467), 100)
 plot(trans_imp_regular)
 acf(trans_imp_regular)
+adfTest(trans_imp_regular)
 ```
 
 
