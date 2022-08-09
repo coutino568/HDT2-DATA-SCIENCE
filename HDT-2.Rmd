@@ -138,7 +138,7 @@ adfTest(trans_imp_super)
 ```
 ```{r}
 plot(importacion_regular)
-trans_imp_regular<-diff(BoxCox(importacion_regular, 26.0634467), 100)
+trans_imp_regular<-diff(BoxCox(importacion_regular, 26.0634467))
 plot(trans_imp_regular)
 acf(trans_imp_regular)
 adfTest(trans_imp_regular)
